@@ -6,3 +6,5 @@ function getSpeciesByIds(...ids) {
 }
 
 module.exports = getSpeciesByIds;
+
+console.log(getSpeciesByIds());
