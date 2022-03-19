@@ -3,6 +3,7 @@ const data = require('../data/zoo_data');
 function countEntrants(entrants) {
   const pessoas = entrants;
   const arroz = pessoas.filter((nome) => nome);
+  console.log(`este é o arroz ${arroz}`);
   const crianças = arroz.filter((teste) => teste.age < 18);
   const adultos = arroz.filter((teste) => teste.age >= 18 && teste.age < 50);
   const idoso = arroz.filter((teste) => teste.age >= 50);
@@ -23,17 +24,17 @@ function calculateEntry(entrants) {
   return adulto + criança + senhor;
 }
 
-// const arroz = [
-//   { name: 'Floki', age: 5 },
-//   { name: 'Dolly', age: 5 },
-//   { name: 'Aquiles', age: 9 },
-//   { name: 'Cristiano', age: 18 },
-//   { name: 'Cintia', age: 18 },
-//   { name: 'Marcia', age: 50 },
-// ];
+const arroz = [
+  { name: 'Floki', age: 5 },
+  { name: 'Dolly', age: 5 },
+  { name: 'Aquiles', age: 9 },
+  { name: 'Cristiano', age: 18 },
+  { name: 'Cintia', age: 18 },
+  { name: 'Marcia', age: 50 },
+];
 
-// console.log(calculateEntry(arroz));
-// console.log(calculateEntry());
-// console.log(calculateEntry({}));
+console.log(calculateEntry(arroz));
+console.log(calculateEntry());
+console.log(calculateEntry({}));
 
 module.exports = { calculateEntry, countEntrants };
