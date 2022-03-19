@@ -9,15 +9,15 @@ function verificacao(acc, element) {
 
 function countAnimals(animal) {
   if (!animal) {
-    const normal = species.reduce(verificacao, {});
-    return normal;
+    const todosOsAnimais = species.reduce(verificacao, {});
+    return todosOsAnimais;
   }
   if (animal) {
-    const animalEncontrado = species.filter((nome) => nome.name === animal.specie);
-    const quantidadeDeAnimais = animalEncontrado.find((teste) => teste.residents);
+    const animalEncontrado = species.filter((NomeEspecie) => NomeEspecie.name === animal.specie);
+    const quantidadeDeAnimais = animalEncontrado.find((animais) => animais.residents);
     const { residents } = quantidadeDeAnimais;
     if (animal.sex) {
-      const animaisPorSexo = residents.filter((arroz) => arroz.sex === animal.sex);
+      const animaisPorSexo = residents.filter((Sexo) => Sexo.sex === animal.sex);
       return animaisPorSexo.length;
     }
     return residents.length;
