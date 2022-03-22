@@ -2,23 +2,28 @@ const data = require('../data/zoo_data');
 
 const { species } = data;
 
+const NE = species.filter((animais) => animais.location === 'NE');
+const NW = species.filter((animais) => animais.location === 'NW');
+const SE = species.filter((animais) => animais.location === 'SE');
+const SW = species.filter((animais) => animais.location === 'SW');
+
 const animais = {
-  NE: ['lions', 'giraffes'],
-  NW: ['tigers', 'bears', 'elephants'],
-  SE: ['penguins', 'otters'],
-  SW: ['frogs', 'snakes'],
+  NE: NE.map((animaisFiltrados) => animaisFiltrados.name),
+  NW: NW.map((animaisFiltrados) => animaisFiltrados.name),
+  SE: SE.map((animaisFiltrados) => animaisFiltrados.name),
+  SW: SW.map((animaisFiltrados) => animaisFiltrados.name),
 };
 
 const animaisOrdenadosOuNao = (parametros) => {
   const invocandoAnimais = (acc, element) => {
-    const teste = species.find((animais1) => animais1.name === element.name);
-    const teste1 = teste.residents.map((residentes) => residentes.name);
+    const procurandoAnimais = species.find((animail) => animail.name === element.name);
+    const animaisEncontrados = procurandoAnimais.residents.map((residentes) => residentes.name);
     if (parametros.sorted) {
-      const objeto = { [element.name]: teste1.sort() };
+      const objeto = { [element.name]: animaisEncontrados.sort() };
       acc[element.location].push(objeto);
       return acc;
     }
-    const objeto = { [element.name]: teste1 };
+    const objeto = { [element.name]: animaisEncontrados };
     acc[element.location].push(objeto);
     return acc;
   }; return species.reduce(invocandoAnimais, { NE: [], NW: [], SE: [], SW: [],
@@ -27,16 +32,16 @@ const animaisOrdenadosOuNao = (parametros) => {
 
 const animalPorSexo = (parametros) => {
   const invocandoAnimaisPorSexo = (acc, element) => {
-    const teste = species.find((animais1) => animais1.name === element.name);
+    const procurandoAnimais = species.find((animal) => animal.name === element.name);
     if (parametros.sex) {
-      const sexo = teste.residents.filter((secho) => secho.sex === parametros.sex);
-      const teste1 = sexo.map((residentes) => residentes.name);
+      const sexo = procurandoAnimais.residents.filter((animal) => animal.sex === parametros.sex);
+      const animaisEncontrados = sexo.map((residentes) => residentes.name);
       if (parametros.sorted) {
-        const objeto = { [element.name]: teste1.sort() };
+        const objeto = { [element.name]: animaisEncontrados.sort() };
         acc[element.location].push(objeto);
         return acc;
       }
-      const objeto = { [element.name]: teste1 };
+      const objeto = { [element.name]: animaisEncontrados };
       acc[element.location].push(objeto);
       return acc;
     }
